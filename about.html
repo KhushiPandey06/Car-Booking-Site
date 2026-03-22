@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About Us</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f4f4;
+}
+
+/* HERO */
+.hero {
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+/* ABOUT SECTION */
+.about {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px;
+    align-items: center;
+    gap: 20px;
+}
+
+.about img {
+    width: 45%;
+    border-radius: 15px;
+}
+
+.about-text {
+    width: 50%;
+}
+
+/* STATS */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    background: #111;
+    color: white;
+    padding: 40px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat h2 {
+    font-size: 40px;
+}
+
+/* TEAM */
+.team {
+    padding: 40px;
+    text-align: center;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.member {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.member:hover {
+    transform: scale(1.05);
+}
+
+.member img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* CTA */
+.cta {
+    background: #0072ff;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+.btn {
+    background: white;
+    color: #0072ff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+<h1>About Us</h1>
+<p>Your trusted car rental partner 🚗</p>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+<img src="https://source.unsplash.com/500x350/?car">
+<div class="about-text">
+<h2>Who We Are</h2>
+<p>We provide the best car rental services for families, trips, and daily travel. Our mission is comfort and safety.</p>
+</div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+<div class="stat">
+<h2 id="cars">0</h2>
+<p>Cars</p>
+</div>
+
+<div class="stat">
+<h2 id="customers">0</h2>
+<p>Customers</p>
+</div>
+
+<div class="stat">
+<h2 id="trips">0</h2>
+<p>Trips</p>
+</div>
+</section>
+
+<!-- TEAM -->
+<section class="team">
+<h2>Our Team</h2>
+
+<div class="team-grid">
+
+<div class="member">
+<img src="https://source.unsplash.com/200x200/?man">
+<h3>Poonam</h3>
+<p>Manager</p>
+</div>
+
+
+
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+<h2>Book Your Ride Now 🚀</h2>
+<a href="cars.html" class="btn">Explore Cars</a>
+</section>
+
+<script>
+// COUNTER ANIMATION
+function counter(id, target) {
+    let count = 0;
+    let speed = target / 100;
+
+    let interval = setInterval(() => {
+        count += speed;
+        if (count >= target) {
+            count = target;
+            clearInterval(interval);
+        }
+        document.getElementById(id).innerText = Math.floor(count);
+    }, 20);
+}
+
+// TRIGGER ON LOAD
+window.onload = () => {
+    counter("cars", 50);
+    counter("customers", 200);
+    counter("trips", 120);
+};
+</script>
+
+</body>
+</html>

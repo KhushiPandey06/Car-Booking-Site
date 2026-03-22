@@ -1,0 +1,50 @@
+<!DOCTYPE
+ html> <html> 
+    <head> <title>Poonam Tours & Travel</title>
+         <meta name="description" content="Best car rental in Mumbai. Book affordable cars and travel services."> 
+         <meta name="keywords" content="car rental Mumbai, tours and travel Mumbai"> 
+         <link rel="stylesheet" href="style.css"> 
+        </head> 
+        <body>
+             <header> 
+                <h1>Poonam Tours & Travel</h1>
+                 <p>Mumbai & All India</p>
+                 </header> <nav> <a href="index.html">Home</a> 
+                    <a href="cars.html">Cars</a>
+                     <a href="services.html">Services</a>
+                      <a href="about.html">About</a> 
+                      <a href="contact.html">Contact</a>
+                     </nav> <div class="banner">
+                         <h2>Your Journey, Our Responsibility</h2>
+                          <p>Affordable Travel & Car Rental</p> 
+                          <a class="btn" href="https://wa.me/919653179112?text=I want to book">Book Now</a>
+                         </div> <!-- Booking Form --> 
+                         <div class="container">
+                             <h2>Book Your Trip</h2> 
+                             <input type="text" id="name" placeholder="Name"><br>
+                             <br> <input type="text" id="phone" placeholder="Phone"><br>
+                             
+                             <br> <input type="text" id="pickup" placeholder="Pickup"><br>
+                             <br> <input type="text" id="drop" placeholder="Drop"><br>
+                             <br> <select id="car"> <option>WagonR</option>
+                                 <option>Swift Dzire</option> 
+                                 <option>Ertiga</option>
+                                 </select><br><br> <input type="date" id="date"><br>
+                                 
+                                 <br> <button class="btn" onclick="bookNow()">Book Now</button> 
+                                 <h3 id="price"></h3>
+                                 
+                                    
+                                      <a class="whatsapp" href="https://wa.me/919653179112">💬</a> 
+                                      <footer> <p>© 2026 Poonam Tours & Travel</p> </footer>
+                                       <script> function bookNow(){ var name=document.getElementById("name").value; 
+                                       var phone=document.getElementById("phone").value; 
+                                       var pickup=document.getElementById("pickup").value; 
+                                       var drop=document.getElementById("drop").value;
+                                        var car=document.getElementById("car").value;
+                                         var date=document.getElementById("date").value; 
+                                         var msg="Booking:%0aName:"+name+"%0aPhone:"+phone+"%0aPickup:"+pickup+"%0aDrop:"+drop+"%0aCar:"+car+"%0aDate:"+date; window.open("https://wa.me/919653179112?text="+msg); }
+                                        
+                                            </script>
+                                             </body> 
+</html>

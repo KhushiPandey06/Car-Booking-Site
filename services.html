@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Premium Services</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body {
+    background: linear-gradient(270deg, #00c6ff, #0072ff, #6a11cb);
+    background-size: 600% 600%;
+    animation: bgMove 10s infinite alternate;
+    color: white;
+}
+
+/* BACKGROUND ANIMATION */
+@keyframes bgMove {
+    0% {background-position: left;}
+    100% {background-position: right;}
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+header h1 {
+    font-size: 45px;
+}
+
+/* GRID */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+
+    /* FIXED ANIMATION */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease;
+}
+
+/* SHOW CLASS */
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* HOVER 3D */
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+/* ICON */
+.icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px #fff;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: #fff;
+    color: #0072ff;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: black;
+    color: white;
+}
+
+/* WHATSAPP FLOAT */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    padding: 15px;
+    border-radius: 50%;
+    color: white;
+    font-size: 22px;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>✨ Our Premium Services</h1>
+<p>Luxury rides. Smooth journeys. Happy customers 🚗</p>
+</header>
+
+<section class="services">
+
+<div class="card">
+<div class="icon">🚗</div>
+<h3>Car Rental</h3>
+<p>Affordable luxury cars for daily use.</p>
+<a href="cars.html" class="btn">Explore</a>
+</div>
+
+<div class="card">
+<div class="icon">👨‍👩‍👧‍👦</div>
+<h3>Family Trips</h3>
+<p>Safe and comfortable journeys for families.</p>
+<a href="#" class="btn">Book Now</a>
+</div>
+
+<div class="card">
+<div class="icon">🌍</div>
+<h3>Tour Packages</h3>
+<p>Customized travel packages for your dream trip.</p>
+<a href="tour.html" class="btn">Get Plan</a>
+
+</div>
+
+<div class="card">
+<div class="icon">💼</div>
+<h3>Corporate Travel</h3>
+<p>Professional rides for business needs.</p>
+<a href="corporate.html" class="btn">Contact</a>
+</div>
+
+</section>
+
+<!-- WHATSAPP BUTTON -->
+<a class="whatsapp" href="https://wa.me/919653179112?text=Hello%20I%20want%20service">💬</a>
+
+<script>
+// SELECT CARDS
+const cards = document.querySelectorAll(".card");
+
+// FUNCTION
+function showCards() {
+    let trigger = window.innerHeight * 0.85;
+
+    cards.forEach(card => {
+        let top = card.getBoundingClientRect().top;
+
+        if (top < trigger) {
+            card.classList.add("show");
+        }
+    });
+}
+
+// RUN ON LOAD ✅
+window.addEventListener("load", showCards);
+
+// RUN ON SCROLL ✅
+window.addEventListener("scroll", showCards);
+</script>
+
+</body>
+</html>

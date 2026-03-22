@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Us</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+/* CONTACT INFO */
+.contact-info {
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.contact-info a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 30px;
+}
+
+/* FORM */
+.form-box {
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    width: 300px;
+}
+
+/* INPUT */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* BUTTON */
+.btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    background: white;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* MAP */
+.map {
+    width: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* WHATSAPP */
+.whatsapp {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* SUCCESS */
+.success {
+    display: none;
+    background: green;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* ⭐ REVIEW SECTION */
+.reviews {
+    padding: 40px;
+    text-align: center;
+}
+
+.review-form input,
+.review-form textarea,
+.review-form select {
+    width: 80%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.review-form button {
+    padding: 10px 20px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.review-card {
+    background: rgba(255,255,255,0.2);
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 10px;
+    width: 300px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>📞 Contact Us</h1>
+<p>We are here to help you 24/7</p>
+</header>
+
+<!-- ✅ CONTACT DETAILS ADDED -->
+<div class="contact-info">
+    <p>📞 Phone:+91 9653179112</p>
+    <p>📧 Email:prakashpandey47243@gmail.com</p>
+</div>
+
+<div class="container">
+
+<!-- FORM -->
+<div class="form-box">
+<h2>Send Message</h2>
+
+<input type="text" id="name" placeholder="Your Name">
+<input type="text" id="phone" placeholder="Phone Number">
+<textarea id="msg" placeholder="Your Message"></textarea>
+
+<button class="btn" onclick="sendMsg()">Send Message</button>
+
+<div class="success" id="success">Message Sent Successfully ✅</div>
+
+<a class="whatsapp" href="https://wa.me/919653179112?text=Hello">Chat on WhatsApp</a>
+
+</div>
+
+<!-- MAP -->
+<div class="map">
+<iframe 
+src="https://maps.google.com/maps?q=mumbai&t=&z=13&ie=UTF8&iwloc=&output=embed"
+width="100%" height="300" style="border:0;"></iframe>
+</div>
+
+</div>
+
+<!-- ⭐ REVIEW SECTION -->
+<section class="reviews">
+
+<h2>⭐ Customer Reviews</h2>
+
+<div class="review-form">
+<input type="text" id="rname" placeholder="Your Name">
+<textarea id="rmsg" placeholder="Write your review"></textarea>
+
+<select id="rating">
+<option value="5">⭐⭐⭐⭐⭐</option>
+<option value="4">⭐⭐⭐⭐</option>
+<option value="3">⭐⭐⭐</option>
+<option value="2">⭐⭐</option>
+<option value="1">⭐</option>
+</select>
+
+<br>
+<button onclick="addReview()">Submit Review</button>
+</div>
+
+<div id="reviewList"></div>
+
+</section>
+
+<script>
+// CONTACT FORM
+function sendMsg() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let msg = document.getElementById("msg").value;
+
+    if(name=="" || phone=="") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    let text = `Hello, Name: ${name}, Phone: ${phone}, Message: ${msg}`;
+    let url = `https://wa.me/919653179112?text=${encodeURIComponent(text)}`;
+    
+    window.open(url, "_blank");
+
+    document.getElementById("success").style.display = "block";
+}
+
+// ⭐ REVIEW SYSTEM
+let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+function displayReviews() {
+    let html = "";
+
+    reviews.forEach(r => {
+        html += `
+        <div class="review-card">
+            <h4>${r.name} (${r.rating}⭐)</h4>
+            <p>${r.msg}</p>
+        </div>
+        `;
+    });
+
+    document.getElementById("reviewList").innerHTML = html;
+}
+
+function addReview() {
+    let name = document.getElementById("rname").value;
+    let msg = document.getElementById("rmsg").value;
+    let rating = document.getElementById("rating").value;
+
+    if(name=="" || msg=="") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    let review = { name, msg, rating };
+    reviews.push(review);
+
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+
+    displayReviews();
+
+    document.getElementById("rname").value = "";
+    document.getElementById("rmsg").value = "";
+}
+
+displayReviews();
+</script>
+
+</body>
+</html>

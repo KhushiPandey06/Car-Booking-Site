@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Available Cars</title>
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f4f4f4;
+}
+/* HEADER */
+header {
+    background: #111;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+/* FILTER */
+.filter {
+    padding: 15px;
+    text-align: center;
+}
+select {
+    padding: 8px;
+    margin: 5px;
+}
+/* CAR GRID */
+.cars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+.car {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+/* CAROUSEL */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.carousel img {
+    width: 100%;
+    display: none;
+    border-radius: 10px;
+}
+.carousel img.active {
+    display: block;
+}
+.carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.carousel .prev { left: 10px; }
+.carousel .next { right: 10px; }
+
+.btn {
+    display: inline-block;
+    background: green;
+    color: white;
+    padding: 8px 12px;
+    margin-top: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* RATING */
+.stars {
+    color: gold;
+}
+/* POPUP */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+.popup-content {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    margin: 100px auto;
+    border-radius: 10px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h2>🚗 Choose Your Car</h2>
+</header>
+
+
+<div class="cars" id="carList">
+
+<!-- CAR 1: WagonR -->
+<div class="car" data-budget="low" data-seat="5">
+<div class="carousel">
+    <img src="WagonR.webp" class="active">
+    <img src="WagonRR.jpg">
+    <img src="WagonRRR.jpg">
+    <button class="prev" onclick="prevSlide(this)">&#10094;</button>
+    <button class="next" onclick="nextSlide(this)">&#10095;</button>
+</div>
+<h3>WagonR</h3>
+<div class="stars">⭐⭐⭐⭐☆</div>
+<button class="btn" onclick="openPopup('WagonR')">Book Now</button>
+</div>
+
+<!-- CAR 2: Swift -->
+<div class="car" data-budget="mid" data-seat="5">
+<div class="carousel">
+    <img src="Dzire1.jpg" class="active">
+    <img src="Dzire2.jpg">
+    <img src="Dzire3.jpg">
+    <button class="prev" onclick="prevSlide(this)">&#10094;</button>
+    <button class="next" onclick="nextSlide(this)">&#10095;</button>
+</div>
+<h3>Swift Dzire</h3>
+
+<div class="stars">⭐⭐⭐⭐⭐</div>
+<button class="btn" onclick="openPopup('Swift')">Book Now</button>
+</div>
+
+<!-- CAR 3: Ertiga -->
+<div class="car" data-budget="mid" data-seat="7">
+<div class="carousel">
+    <img src="Ertiga1.jpg" class="active">
+    <img src="Ertiga2.jpg">
+    <img src="Ertiga3.jpg">
+    
+    <button class="prev" onclick="prevSlide(this)">&#10094;</button>
+    <button class="next" onclick="nextSlide(this)">&#10095;</button>
+</div>
+<h3>Ertiga</h3>
+<div class="stars">⭐⭐⭐⭐☆</div>
+<button class="btn" onclick="openPopup('Ertiga')">Book Now</button>
+</div>
+
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+<div class="popup-content">
+<h3 id="carName"></h3>
+<input type="text" id="name" placeholder="Your Name"><br><br>
+<input type="text" id="phone" placeholder="Phone"><br><br>
+<button class="btn" onclick="bookNow()">Confirm Booking</button>
+<button onclick="closePopup()">Cancel</button>
+</div>
+</div>
+
+<script>
+// FILTER
+function filterCars() {
+    let budget = document.getElementById("budget").value;
+    let seats = document.getElementById("seats").value;
+    let cars = document.querySelectorAll(".car");
+    cars.forEach(car => {
+        let show = true;
+        if (budget !== "all" && car.dataset.budget !== budget) show = false;
+        if (seats !== "all" && car.dataset.seat !== seats) show = false;
+        car.style.display = show ? "block" : "none";
+    });
+}
+
+// POPUP
+let selectedCar = "";
+function openPopup(car) {
+    selectedCar = car;
+    document.getElementById("popup").style.display = "block";
+    document.getElementById("carName").innerText = car;
+}
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+function bookNow() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let message = `Hello, I want to book ${selectedCar}. Name: ${name}, Phone: ${phone}`;
+    let url = `https://wa.me/919653179112?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+}
+
+// CAROUSEL MANUAL
+function nextSlide(btn) {
+    let carousel = btn.parentElement;
+    let imgs = carousel.querySelectorAll("img");
+    let current = carousel.querySelector("img.active");
+    let index = Array.from(imgs).indexOf(current);
+    current.classList.remove("active");
+    index = (index + 1) % imgs.length;
+    imgs[index].classList.add("active");
+}
+function prevSlide(btn) {
+    let carousel = btn.parentElement;
+    let imgs = carousel.querySelectorAll("img");
+    let current = carousel.querySelector("img.active");
+    let index = Array.from(imgs).indexOf(current);
+    current.classList.remove("active");
+    index = (index - 1 + imgs.length) % imgs.length;
+    imgs[index].classList.add("active");
+}
+
+// CAROUSEL AUTO-SLIDE
+document.querySelectorAll(".carousel").forEach(carousel => {
+    let imgs = carousel.querySelectorAll("img");
+    let index = 0;
+    setInterval(() => {
+        imgs[index].classList.remove("active");
+        index = (index + 1) % imgs.length;
+        imgs[index].classList.add("active");
+    }, 3000);
+});
+</script>
+
+</body>
+</html>

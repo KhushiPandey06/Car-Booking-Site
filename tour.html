@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tour Packages</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+}
+
+header {
+    text-align: center;
+    padding: 50px;
+    color: white;
+}
+
+.packages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px;
+    background: #ff4d6d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌍 Tour Packages</h1>
+<p>Explore amazing destinations with us</p>
+</header>
+
+<section class="packages">
+
+<div class="card">
+<h3>Goa Trip 🏖️</h3>
+<p>3 Days / 2 Nights</p>
+<a href="https://wa.me/919653179112?text=I want Goa Package" class="btn">Book Now</a>
+</div>
+
+<div class="card">
+<h3>Lonavala Trip 🌄</h3>
+<p>1 Day Trip</p>
+<a href="https://wa.me/919653179112?text=I want Lonavala Package" class="btn">Book Now</a>
+</div>
+
+<div class="card">
+<h3>Manali Trip ❄️</h3>
+<p>5 Days / 4 Nights</p>
+<a href="https://wa.me/919653179112?text=I want Manali Package" class="btn">Book Now</a>
+</div>
+
+</section>
+
+</body>
+</html>
